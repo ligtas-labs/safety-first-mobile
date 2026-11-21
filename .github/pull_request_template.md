@@ -2,11 +2,7 @@
 
 <!-- Describe the change, affected requirements and any cross-repo dependency. -->
 
-## Linear
-
-<!-- Final implementing PR: one line in the form Completes <Linear ID> per real ticket.
-Supporting PR: Refs <Linear ID>. Omit completion lines when no real ticket applies.
-Ticket PRs target development. Sprint release PRs target main from development. -->
+<!-- Keep Linear IDs in branch names only. Ticket PRs target development. Sprint release PRs target main from development. -->
 
 ## Verification
 
