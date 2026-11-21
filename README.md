@@ -25,6 +25,8 @@ docs/                             # PRD and design
 .github/workflows/godot.yml       # headless import
 ```
 
+See [the technical design](docs/DESIGN.md#planned-simulation-layout) for planned case folders and files to protect during reorganization.
+
 ## Deployment
 
 Android builds and distribution use Godot export on a separate track. The web and API are Docker services on the Ubuntu VPS behind Caddy. Mobile uses the HTTPS API for planned online flows.
