@@ -1,10 +1,32 @@
 # Safety First Mobile
 
-Use Godot 4.7 with matching export templates, Git and pnpm 10.25.0 for the commit hooks. Run `pnpm install --frozen-lockfile`, then import project.godot into the editor with `godot --editor --path .`. Run an individual scene with F6 or a configured main scene with F5. For a clean import run `godot --headless --path . --import`. Configure the Android SDK, matching export templates and a debug export preset before exporting an APK. Record the preset name, device and Android version in the PR. Demonstrate offline save, restart, reconnection and a duplicate retry against synthetic data as those features land. Keep signing keys outside Git. APKs run on phones.
+Godot 4.7 Compatibility project for the Android simulation. The foundation has an importable icon and placeholder directories. A playable scene, Android export preset and local persistence are pending.
 
+## Local development
 
-## Product scope
+Install Godot 4.7, Node.js 24 and pnpm 10.25.0. Install matching Godot export templates and configure the Android SDK/JDK when device export work starts. From the project root:
 
-Give Civil Engineering students repeatable offline construction safety practice on Android.
+```sh
+pnpm install --frozen-lockfile
+godot --editor --path .
+godot --headless --path . --import
+```
 
-[Requirements](docs/PRD.md) · [Design](docs/DESIGN.md) · [Contributing](CONTRIBUTING.md) · [Agent instructions](AGENTS.md)
+The import matches the CI command. F6 runs a scene after one exists; F5 requires a configured main scene. When the team adds an Android debug preset, export it using the editor or `godot --headless --path . --export-debug "<preset>" "<path-to-apk>"`. Install on a physical Android device and record build, model and OS version. Keep signing keys and passwords outside Git. The planned authenticated HTTPS API origin and supported device range require confirmation.
+
+## Repository layout
+
+```text
+project.godot                     # engine settings and project icon reference
+icon.svg, icon.svg.import         # asset and import metadata
+scenes/, scripts/                 # current placeholders
+assets/, audio/                   # current placeholders
+docs/                             # PRD and design
+.github/workflows/godot.yml       # headless import
+```
+
+## Deployment
+
+Android builds and distribution use Godot export on a separate track. The web and API are Docker services on the Ubuntu VPS behind Caddy. Mobile uses the HTTPS API for planned online flows.
+
+[Product requirements](docs/PRD.md) · [Technical design](docs/DESIGN.md) · [Contributing](CONTRIBUTING.md) · [Agent instructions](AGENTS.md)

@@ -1,34 +1,18 @@
 ## Summary
-<!-- Describe the change and why it is needed. -->
 
-## Linear issue
-<!-- Final implementing PR: one "Completes LIG-123" line per issue. Supporting PR: "Refs LIG-123". -->
+<!-- Describe the change, affected requirements and any cross-repo dependency. -->
 
-## Changes
--
+## Linear
 
-## Type
-- [ ] Feature or UI
-- [ ] Fix
-- [ ] Refactor
-- [ ] Documentation
-- [ ] Setup, CI or chore
-- [ ] Tests
+<!-- Final implementing PR: one line in the form Completes <Linear ID> per real ticket.
+Supporting PR: Refs <Linear ID>. Omit completion lines when no real ticket applies.
+Ticket PRs target development. Sprint release PRs target main from development. -->
 
 ## Verification
-<!-- List each acceptance criterion, test/command or manual steps, and observed result. -->
 
-## Screenshots or recordings
-<!-- Include before/after or device evidence for visual changes. -->
+<!-- Record acceptance checks, failure and recovery tests, results, and anything unexecuted.
+Move Godot resources with their metadata; verify affected references and headless import. For gameplay changes record scene/APK, device, engine, network state, save/restart and retry results. -->
 
-## Known issues and release notes
-<!-- Dependencies, migrations, rollback, or follow-up tickets. -->
+## Release notes
 
-## Checklist
-- [ ] I reviewed the diff and checked the base branch.
-- [ ] I tested the acceptance criteria and applicable failure paths.
-- [ ] I checked responsive layout or target device behavior where applicable.
-- [ ] I ran the applicable repository checks and updated affected docs.
-
-## Mobile evidence
-<!-- Record device, Godot version, scene or APK, network state and save/restart result. -->
+<!-- Include applicable migrations, image digest or Android build, rollback details and follow-up tickets. -->
