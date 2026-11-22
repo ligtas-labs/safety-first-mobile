@@ -1,7 +1,6 @@
 # Safety First Mobile agent instructions
 
-Read [the PRD](docs/PRD.md), [the design](docs/DESIGN.md), [the contribution workflow](CONTRIBUTING.md), and the linked Linear ticket when one exists. Use the commands in the [README](README.md).
-
-Follow the [Godot file protections](docs/DESIGN.md#files-and-identifiers-to-protect). Verify affected references and headless import after moving resources. For gameplay changes record scene/APK, device, engine, network state, save/restart and retry results.
-
-Use synthetic fixtures. Include requirement IDs, applicable verification results and unexecuted checks in the PR. Keep credentials and participant data out of code, logs and review artifacts. Pending safety content, scoring, research and integration decisions require the appropriate owner before implementation.
+- **Start here.** Read the task and any linked Linear issue. Use the [README](README.md) for setup, [CONTRIBUTING](CONTRIBUTING.md) for workflow, and the relevant sections of the [PRD](docs/PRD.md) or [design](docs/DESIGN.md) for behavior. Follow any more specific instructions in the directory you edit.
+- **Respect product decisions.** Use approved safety content, scoring rules and integration contracts. Surface unresolved decisions to the task owner before implementing them. Use synthetic fixtures and keep secrets and participant data out of code, prompts, logs and evidence.
+- **Keep changes local to the feature.** Keep case-specific resources together. Move referenced assets in Godot with their metadata and verify their references. Preserve save compatibility and stable attempt IDs. See [file protections](docs/DESIGN.md#files-and-identifiers-to-protect).
+- **Verify behavior.** Start behavior changes with a failing test where supported, make it pass, then refactor. Run `godot --headless --path . --import`. Check affected scenes and an Android build for gameplay or export changes when available. Report observed results and checks left open.
