@@ -2,6 +2,23 @@
 
 Start with the [README](README.md) for setup and supported commands. Use the [PRD](docs/PRD.md) and [technical design](docs/DESIGN.md) for requirements and design decisions.
 
+## Project Structure
+
+```text
+safety-first-mobile/
+├── .github/           # GitHub automation and PR templates
+│   └── workflows/     # Continuous integration workflows
+│       └── godot.yml  # Validates Godot headless import
+├── assets/            # Placeholder for shared visual assets
+├── audio/             # Placeholder for audio resources
+├── docs/              # Requirements, design, and development guides
+├── scenes/            # Placeholder for Godot scenes
+├── scripts/           # Placeholder for GDScript code
+├── icon.svg           # Project icon
+├── icon.svg.import    # Godot import settings for the icon
+└── project.godot      # Godot project entry point and engine settings
+```
+
 ## Ticket and branch workflow
 
 1. Pick up the Linear issue and confirm ownership, affected repos, dependencies and acceptance criteria. Use stable PRD requirement IDs where they apply.
