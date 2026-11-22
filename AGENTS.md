@@ -1,0 +1,6 @@
+# Safety First Mobile agent instructions
+
+- **Start here.** Read the task and any linked Linear issue. Use the [README](README.md) for setup, [CONTRIBUTING](CONTRIBUTING.md) for workflow, and the relevant sections of the [PRD](docs/PRD.md) or [design](docs/DESIGN.md) for behavior. Follow any more specific instructions in the directory you edit.
+- **Respect product decisions.** Use approved safety content, scoring rules and integration contracts. Surface unresolved decisions to the task owner before implementing them. Use synthetic fixtures and keep secrets and participant data out of code, prompts, logs and evidence.
+- **Keep changes local to the feature.** Keep case-specific resources together. Move referenced assets in Godot with their metadata and verify their references. Preserve save compatibility and stable attempt IDs. See [file protections](docs/DESIGN.md#files-and-identifiers-to-protect).
+- **Verify behavior.** Start behavior changes with a failing test where supported, make it pass, then refactor. Run `godot --headless --path . --import`. Check affected scenes and an Android build for gameplay or export changes when available. Report observed results and checks left open.
