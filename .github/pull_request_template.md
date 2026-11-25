@@ -1,7 +1,7 @@
 ## Linear Issue
 
 <!-- Replace the placeholder with the issue ID and its Linear URL. Use Closes, Fixes, or Resolves for work that completes the issue. Status changes follow the team's Linear automation. -->
-Closes [TEAM-XXX](https://linear.app)
+[TEAM-XXX](https://linear.app)
 
 ## Summary of Changes
 
