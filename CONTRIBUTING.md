@@ -24,7 +24,7 @@ safety-first-mobile/
 1. Pick up the Linear issue and confirm ownership, affected repos, dependencies and acceptance criteria. Use stable PRD requirement IDs where they apply.
 2. Create new ticket branches from an updated `development` using `<type>/<lowercase-linear-id>-<short-slug>`. Use `feature/`, `fix/`, `refactor/`, `setup/` or `docs/`. Continue work on an existing ticket branch when one is assigned. Use a descriptive branch name for unticketed work.
 3. Stage one logical change, inspect `git diff --cached`, and use Conventional Commits. Example: `docs(contributing): explain the test-first workflow`.
-4. Open ticket PRs into `development`. Use a descriptive title and body and keep the Linear ID in the branch name. For cross-repo work, identify dependencies and merge order. Request teammate review and wait for applicable CI.
+4. Open ticket PRs into `development`. Use a descriptive title, follow the PR template, and include the Linear ID in the branch name and the Linear Issue section. For cross-repo work, identify dependencies and merge order. Request teammate review and wait for applicable CI.
 5. Verify the integrated result on `development` and record evidence in Linear before closing the ticket. For a sprint release, open a `development` → `main` PR, use a merge commit, and include applicable artifact versions, migration and rollback steps. Tag the accepted release. Merge urgent changes on `main` back into `development`.
 
 ## Test-driven development
