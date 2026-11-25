@@ -1,0 +1,24 @@
+name: Restrict PR Source Branch
+
+on:
+  pull_request_target:
+    branches: [main]
+    types: [opened, reopened, synchronize, edited]
+
+permissions: {}
+
+jobs:
+  check-source-branch:
+    name: Restrict main PR source
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify source branch
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+          HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+          BASE_REPO: ${{ github.repository }}
+        run: |
+          if [[ "$HEAD_BRANCH" != "development" || "$HEAD_REPO" != "$BASE_REPO" ]]; then
+            echo "::error::Pull requests into main must come from $BASE_REPO:development (got $HEAD_REPO:$HEAD_BRANCH)"
+            exit 1
+          fi
