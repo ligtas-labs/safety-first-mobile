@@ -43,6 +43,12 @@ Use versioned reviewed content separate from save state. Verify a Godot-compatib
 
 See the [PRD](PRD.md) for stable requirement IDs, the proposed cross-app workflow and unresolved contracts. Add planned folders with their first implementation.
 
+## Account integration
+
+Require online account creation or existing-student sign-in and an API-confirmed active student profile. On fresh offline launch, a canceled handoff, or incomplete provisioning, keep signed-in features gated and offer a way to resume. Preserve account-scoped attempts through sign-out and expiry, and pause uploads until reauthentication. Verify sign-up, retry, sign-out, recovery return and account isolation on an exported Android build. The handoff, secure storage, and returning-user offline policy require approval.
+
+See [Linear delivery scope](PRD.md#linear-delivery-scope) for dependencies and verification.
+
 ## Verification
 
 Move Godot resources with their metadata; verify affected references and headless import. For gameplay changes record scene/APK, device, engine, network state, save/restart and retry results. See the [README](../README.md) for current commands and the [PRD](PRD.md) for acceptance checks.

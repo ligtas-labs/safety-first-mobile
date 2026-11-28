@@ -34,7 +34,7 @@ Civil Engineering students authenticate online, obtain reviewed packages, play d
 | SF-09 | Authenticate students and provision teachers operationally; scope first deployment to one school with multiple classes. 33 §1.7, §3.6; C4 §4.1, §4.5.6. | Require connectivity for initial sign-in. Expired credentials pause uploads until reauthentication; existing saved evidence remains intact. Offline session expiry policy remains open. |
 | SF-10 | Manage classes and approve enrollment requests from class codes. 33 §3.3 item 9 (p. 42); C4 §4.6.4, §4.7.1. | Honor approved class membership on online refresh. A code or pending request grants no class access. |
 | SF-11 | Assign published activities and show eligible work and status. 33 §3.3 item 9 (p. 42), §3.6; C4 §4.6.4. | Retrieve the student's eligible assignments when online and label missing local content. Recover after download; treat revoked access according to the approved offline policy. |
-| SF-12 | Durably save and synchronize attempt evidence with repeat-safe server acceptance. 33 §1.7.2, §3.6.I (printed pp. 47–48); C4 §4.5.6, §4.7.2–3. | Save the current attempt and pending state durably in SQLite before upload. Test airplane mode, process termination, same-ID retry after a lost response, expired authentication and invalid evidence. An acknowledgment persists the confirmed ID/result; a conflicting response remains flagged. |
+| SF-12 | Durably save and synchronize attempt evidence with repeat-safe server acceptance. 33 §1.7.2, §3.6.I; C4 §4.5.6, §4.7.2–3. | Save the current attempt and pending state durably in SQLite before upload. Test airplane mode, process termination, same-ID retry after a lost response, expired authentication and invalid evidence. An acknowledgment persists the confirmed ID/result; a conflicting response remains flagged. |
 | SF-13 | Explicitly submit an eligible confirmed attempt and restrict teacher review to that class. 33 §3.3 item 9 (p. 42); C4 §4.5.6, §4.7.4. | Let the student explicitly submit an API-confirmed eligible attempt. On failure show the reason and retain the attempt. Treat a submission as visible to the teacher only after API acceptance. |
 | SF-15 | Control account/record access and retain historical versions and finalized evidence. 33 §3.6; C4 §4.3.11, §4.5.4, §4.5.6. | Resume using the save's pinned content/rubric references. Keep finalized evidence intact across updates and disallow cross-account reads. Test migrations once a SQLite schema exists. |
 
@@ -45,13 +45,43 @@ Civil Engineering students authenticate online, obtain reviewed packages, play d
 | SF-16 | Verify product quality, accessibility to intended devices and operational behavior. 33 §1.7, §3.1–2, §3.8.5; C4 §4.5.3. | Run editor/CI import and device tests for touch, readability, loading, frame time, export, and kill/restart recovery. Device matrix, FPS, package size and minimum Android version await approval. |
 | SF-17 | Keep approved study procedures and records separate from classroom use. 33 §3.2, §3.10–11. | Use synthetic accounts and content fixtures in engineering sessions. The research team controls pilot instruments, approved evidence capture and any study-data export. |
 
+## Linear delivery scope
+
+Paper 33 Chapter 1 defines the pre-OJT practice objectives and supplementary-learning scope. Chapter 2 motivates guided practice, changing conditions and explanatory feedback. Chapter 3 defines the modules and proposed evaluation and reports needs validation. Chapter 4 specifies the proposed platform and workflows. Linear tracks delivery and acceptance evidence for these requirements.
+
+| Capability | Linear epic | PRD requirements |
+| --- | --- | --- |
+| Accounts and authentication | [LIG-124](https://linear.app/ligtas-labs/issue/LIG-124/epic-user-authentication-and-account-management), [LIG-125](https://linear.app/ligtas-labs/issue/LIG-125/authmobile-require-student-account-onboarding-before-android-features) | SF-09 |
+| Simulation | [LIG-128](https://linear.app/ligtas-labs/issue/LIG-128/epic-core-simulation-playthrough-and-exploration) | SF-01, SF-04–06 |
+| Hazard reference | [LIG-129](https://linear.app/ligtas-labs/issue/LIG-129/epic-hazard-database-and-safety-reference) | SF-02 |
+| HIRAC and safety decisions | [LIG-130](https://linear.app/ligtas-labs/issue/LIG-130/epic-hirac-and-safety-decision-making) | SF-03–04 |
+| Modules and assignments | [LIG-131](https://linear.app/ligtas-labs/issue/LIG-131/epic-learning-module-and-assignment-management) | SF-05, SF-11, SF-13 |
+| Practice scenarios | [LIG-132](https://linear.app/ligtas-labs/issue/LIG-132/epic-practice-scenarios-and-learning-activities) | SF-01, SF-04–06 |
+| Assessment and feedback | [LIG-133](https://linear.app/ligtas-labs/issue/LIG-133/epic-rubric-based-assessment-scoring-and-feedback) | SF-06–07, SF-12 |
+| Progress and monitoring | [LIG-134](https://linear.app/ligtas-labs/issue/LIG-134/epic-learning-progress-tracking-and-student-monitoring) | SF-08, SF-13 |
+| Classes and enrollment | [LIG-135](https://linear.app/ligtas-labs/issue/LIG-135/epic-class-and-enrollment-management) | SF-10, SF-15 |
+| Offline learning and synchronization | [LIG-136](https://linear.app/ligtas-labs/issue/LIG-136/epic-offline-learning-and-synchronization) | SF-05, SF-12, SF-15 |
+| Submission review and feedback | [LIG-137](https://linear.app/ligtas-labs/issue/LIG-137/epic-submission-review-and-teacher-feedback) | SF-13–15 |
+
+### Account acceptance
+
+Require online account creation or existing-student sign-in and an API-confirmed active student profile. On fresh offline launch, a canceled handoff, or incomplete provisioning, keep signed-in features gated and offer a way to resume. Preserve account-scoped attempts through sign-out and expiry, and pause uploads until reauthentication. Verify sign-up, retry, sign-out, recovery return and account isolation on an exported Android build. The handoff, secure storage, and returning-user offline policy require approval.
+
+All three components use the same environment-specific Neon Auth identity. A class code requests membership after account activation. Student eligibility, email verification and cross-device sign-out remain open. Test with synthetic student and teacher accounts in a shared non-production environment, with the API available before client smoke tests.
+
+### Planning acceptance details
+
+Support browse-by-category in the hazard book, reviewed variants, pause and resume, and download progress with interrupted-transfer retry. Show module objectives, prerequisites, assignment deadlines and submission status. Cover a student reading teacher comments on their submissions. Verify changed conditions, safety-record decisions and qualified-review decisions against authored case fixtures.
+
+SF-14 covers reading teacher comments on submitted work. Refresh the authorized submission and display its instructional comments separately from confirmed scoring. On a failed refresh, preserve the submission and show an actionable retry.
+
 ## Cross-app workflow
 
 Mobile pins the content and rubric versions and saves an attempt ID, attempt kind, relevant parent attempt ID, and ordered evidence locally before upload. On reconnection it retries pending evidence under the same learner and client attempt ID. API validates ownership, content compatibility and evidence, persists results, and returns the existing confirmation on a matching repeat. A changed payload for the same ID produces a conflict. Mobile holds on timeout, pauses for renewed authentication, and retains rejected or discrepant evidence with its reason. Only server acknowledgment establishes confirmed credit.
 
 Synchronization and classroom submission are distinct. Confirmed practice remains private. An explicit submission identifies the assignment and a confirmed attempt. API checks learner ownership, current enrollment and assignment eligibility before linking it. Web shows the result to the authorized teacher after the submission succeeds and the view refreshes. Teacher comments are separate records. The study protocol controls access to research instruments and outcomes separately.
 
-This is the proposed behavior from Chapter 4 §§4.5.4–7 and 4.7.1–4. Endpoint names, payload shape and canonical comparison, auth mechanism, retry timing, offline session expiry, deadline/resubmission policies, and archive/recovery semantics require a shared decision.
+This is the proposed behavior from Chapter 4 §§4.5.4–7 and 4.7.1–4. Endpoint names, payload shape and canonical comparison, credential validation and client handoff, retry timing, offline session expiry, deadline/resubmission policies, and archive/recovery semantics require a shared decision.
 
 ## Data and access
 
